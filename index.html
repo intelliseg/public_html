@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IntelliSeg - Soluções Inteligentes em Segurança</title>
+    <meta name="description" content="Soluções inteligentes em segurança eletrônica, CFTV, controle de acesso e automação. Tecnologia de ponta para proteger seu patrimônio.">
+    
+    <!-- Fontes Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ===== VARIÁVEIS CSS ===== */
+        :root {
+            --azul-primary: #2e7aff;
+            --preto-primary: #000000;
+            --branco-primary: #ffffff;
+            --cinza-claro: #f8f9fa;
+            --cinza-medio: #6c757d;
+            --azul-hover: #1c5dd6;
+            --shadow-light: 0 2px 10px rgba(0,0,0,0.1);
+            --shadow-medium: 0 5px 20px rgba(0,0,0,0.15);
+            --transition: all 0.3s ease;
+        }
+
+        /* ===== RESET E BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--preto-primary);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: var(--azul-primary);
+            color: var(--branco-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 2px solid var(--azul-primary);
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--azul-hover);
+            border-color: var(--azul-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--azul-primary);
+            border: 2px solid var(--azul-primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--azul-primary);
+            color: var(--branco-primary);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--azul-primary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--cinza-medio);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--preto-primary);
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: var(--shadow-light);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--branco-primary);
+            text-decoration: none;
+        }
+
+        .logo .highlight {
+            color: var(--azul-primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: var(--branco-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover {
+            color: var(--azul-primary);
+        }
+
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--branco-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(46,122,255,0.3)), 
+                        url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3') center/cover;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            color: var(--branco-primary);
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero-content .highlight {
+            color: var(--azul-primary);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ===== SOLUÇÕES ===== */
+        .solucoes {
+            padding: 100px 0;
+            background: var(--branco-primary);
+        }
+
+        .solucoes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .solucao-card {
+            background: var(--branco-primary);
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+            text-align: center;
+            border-top: 4px solid transparent;
+        }
+
+        .solucao-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-medium);
+            border-top-color: var(--azul-primary);
+        }
+
+        .solucao-card .icon {
+            font-size: 3.5rem;
+            color: var(--azul-primary);
+            margin-bottom: 25px;
+        }
+
+        .solucao-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--preto-primary);
+        }
+
+        .solucao-card p {
+            color: var(--cinza-medio);
+            line-height: 1.7;
+        }
+
+        /* ===== DIFERENCIAIS ===== */
+        .diferenciais {
+            padding: 100px 0;
+            background: var(--cinza-claro);
+        }
+
+        .diferenciais-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .diferencial-item {
+            background: var(--branco-primary);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow-light);
+        }
+
+        .diferencial-item:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .diferencial-item .icon {
+            font-size: 3rem;
+            color: var(--azul-primary);
+            margin-bottom: 20px;
+        }
+
+        .diferencial-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .diferencial-item p {
+            color: var(--cinza-medio);
+            font-size: 0.95rem;
+        }
+
+        /* ===== SOBRE ===== */
+        .sobre {
+            padding: 100px 0;
+            background: var(--branco-primary);
+        }
+
+        .sobre-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-top: 60px;
+        }
+
+        .sobre-text h3 {
+            color: var(--azul-primary);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .sobre-text p {
+            margin-bottom: 20px;
+            color: var(--cinza-medio);
+            line-height: 1.8;
+        }
+
+        .sobre-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: var(--shadow-medium);
+        }
+
+        /* ===== DEPOIMENTOS ===== */
+        .depoimentos {
+            padding: 100px 0;
+            background: var(--preto-primary);
+            color: var(--branco-primary);
+        }
+
+        .depoimentos .section-title h2 {
+            color: var(--branco-primary);
+        }
+
+        .depoimentos .section-title h2::after {
+            background: var(--azul-primary);
+        }
+
+        .depoimentos .section-title p {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .depoimento-card {
+            background: rgba(255,255,255,0.1);
+            padding: 40px;
+            border-radius: 15px;
+            margin: 30px auto;
+            max-width: 800px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .depoimento-card p {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .depoimento-autor {
+            font-weight: 600;
+            color: var(--azul-primary);
+        }
+
+        /* ===== CTA FINAL ===== */
+        .cta-final {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--azul-primary), var(--azul-hover));
+            color: var(--branco-primary);
+            text-align: center;
+        }
+
+        .cta-final h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-final p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .formulario-contato {
+            background: var(--branco-primary);
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 50px auto 0;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .formulario-contato h3 {
+            color: var(--preto-primary);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--preto-primary);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--azul-primary);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--preto-primary);
+            color: var(--branco-primary);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            color: var(--azul-primary);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            margin-bottom: 10px;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: var(--azul-primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--azul-primary);
+            color: var(--branco-primary);
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--azul-hover);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .solucoes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sobre-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .cta-final h2 {
+                font-size: 2.2rem;
+            }
+
+            .formulario-contato {
+                margin: 30px 20px 0;
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .btn {
+                padding: 12px 24px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* ===== ANIMAÇÕES ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* ===== SCROLL SUAVE ===== */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">
+                Intelli<span class="highlight">Seg</span>
+            </a>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#solucoes">Soluções</a></li>
+                    <li><a href="#diferenciais">Diferenciais</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+
+            <a href="#contato" class="btn">Solicitar Orçamento</a>
+            
+            <button class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="hero">
+        <div class="container">
+            <div class="hero-content fade-in-up">
+                <h1>Segurança <span class="highlight">Inteligente</span><br>para o Futuro</h1>
+                <p>Proteja seu patrimônio com as mais avançadas soluções em segurança eletrônica, CFTV, controle de acesso e automação. Tecnologia de ponta que antecipa ameaças e garante sua tranquilidade.</p>
+                
+                <div class="hero-buttons">
+                    <a href="#contato" class="btn">Transforme Sua Segurança</a>
+                    <a href="#solucoes" class="btn btn-outline">Conheça Nossas Soluções</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUÇÕES -->
+    <section id="solucoes" class="solucoes">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossas Soluções Inteligentes</h2>
+                <p>Tecnologia de ponta integrada para proteção completa e gestão eficiente da sua segurança</p>
+            </div>
+
+            <div class="solucoes-grid">
+                <div class="solucao-card">
+                    <div class="icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>CFTV Inteligente com IA</h3>
+                    <p>Sistemas de videomonitoramento com análise inteligente, reconhecimento facial, detecção de comportamentos suspeitos e alertas em tempo real.</p>
+                </div>
+
+                <div class="solucao-card">
+                    <div class="icon">
+                        <i class="fas fa-fingerprint"></i>
+                    </div>
+                    <h3>Controle de Acesso Biométrico</h3>
+                    <p>Gestão avançada de acessos com biometria facial e digital, cartões inteligentes e integração total com sistemas corporativos.</p>
+                </div>
+
+                <div class="solucao-card">
+                    <div class="icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Alarmes Monitorados 24h</h3>
+                    <p>Central de monitoramento própria com resposta imediata, integração com forças de segurança e aplicativo para gestão remota.</p>
+                </div>
+
+                <div class="solucao-card">
+                    <div class="icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Automação Residencial</h3>
+                    <p>Controle inteligente de iluminação, climatização, portões e sistemas de segurança através de aplicativo móvel.</p>
+                </div>
+
+                <div class="solucao-card">
+                    <div class="icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Segurança Corporativa</h3>
+                    <p>Soluções integradas para empresas com gestão centralizada, relatórios detalhados e conformidade com normas de segurança.</p>
+                </div>
+
+                <div class="solucao-card">
+                    <div class="icon">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <h3>Consultoria Especializada</h3>
+                    <p>Análise de riscos, projetos personalizados e implementação de soluções sob medida para suas necessidades específicas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIFERENCIAIS -->
+    <section id="diferenciais" class="diferenciais">
+        <div class="container">
+            <div class="section-title">
+                <h2>Por Que Escolher a IntelliSeg?</h2>
+                <p>Nossos diferenciais fazem toda a diferença na proteção do seu patrimônio</p>
+            </div>
+
+            <div class="diferenciais-grid">
+                <div class="diferencial-item">
+                    <div class="icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Inteligência Artificial</h3>
+                    <p>Tecnologia de IA para análise preditiva e detecção proativa de ameaças</p>
+                </div>
+
+                <div class="diferencial-item">
+                    <div class="icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Suporte 24/7</h3>
+                    <p>Atendimento especializado disponível 24 horas por dia, todos os dias do ano</p>
+                </div>
+
+                <div class="diferencial-item">
+                    <div class="icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>App Móvel Exclusivo</h3>
+                    <p>Controle total na palma da sua mão com nosso aplicativo intuitivo</p>
+                </div>
+
+                <div class="diferencial-item">
+                    <div class="icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>Certificações</h3>
+                    <p>Empresa certificada com os mais altos padrões de qualidade do mercado</p>
+                </div>
+
+                <div class="diferencial-item">
+                    <div class="icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Manutenção Preventiva</h3>
+                    <p>Programa completo de manutenção para garantir funcionamento perfeito</p>
+                </div>
+
+                <div class="diferencial-item">
+                    <div class="icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>ROI Comprovado</h3>
+                    <p>Retorno sobre investimento demonstrado através de resultados mensuráveis</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section id="sobre" class="sobre">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sobre a IntelliSeg</h2>
+                <p>Inovação e excelência em soluções de segurança inteligente</p>
+            </div>
+
+            <div class="sobre-content">
+                <div class="sobre-text">
+                    <h3>Nossa Missão</h3>
+                    <p>Proporcionar tranquilidade e proteção através de soluções inteligentes de segurança, utilizando tecnologia de ponta para antecipar ameaças e garantir a proteção completa do patrimônio dos nossos clientes.</p>
+
+                    <h3>Nossa Visão</h3>
+                    <p>Ser reconhecida como a empresa líder em soluções inteligentes de segurança, transformando a forma como as pessoas e empresas protegem seus bens mais valiosos.</p>
+
+                    <h3>Nossos Valores</h3>
+                    <p><strong>Inovação:</strong> Sempre à frente com as mais recentes tecnologias<br>
+                    <strong>Confiabilidade:</strong> Sistemas robustos e equipe especializada<br>
+                    <strong>Excelência:</strong> Compromisso com a qualidade em cada projeto<br>
+                    <strong>Transparência:</strong> Relacionamento claro e honesto com clientes</p>
+
+                    <a href="#contato" class="btn">Fale com um Especialista</a>
+                </div>
+
+                <div class="sobre-image">
+                    <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3" alt="Equipe IntelliSeg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section class="depoimentos">
+        <div class="container">
+            <div class="section-title">
+                <h2>O Que Nossos Clientes Dizem</h2>
+                <p>Confiança conquistada através de resultados excepcionais</p>
+            </div>
+
+            <div class="depoimento-card">
+                <p>"A IntelliSeg revolucionou nossa segurança corporativa. O sistema de IA detectou tentativas de invasão que passariam despercebidas. Investimento que se pagou em poucos meses."</p>
+                <div class="depoimento-autor">— Carlos Silva, CEO TechCorp</div>
+            </div>
+
+            <div class="depoimento-card">
+                <p>"Impressionante como o controle de acesso biométrico agilizou nossos processos. A integração com nossos sistemas foi perfeita e o suporte é excepcional."</p>
+                <div class="depoimento-autor">— Marina Santos, Gerente de Facilities</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section id="contato" class="cta-final">
+        <div class="container">
+            <h2>Pronto para Elevar Sua Segurança?</h2>
+            <p>Solicite uma consultoria gratuita e descubra como nossas soluções inteligentes podem proteger seu patrimônio</p>
+
+            <div class="formulario-contato">
+                <h3>Solicite Seu Orçamento</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="nome">Nome Completo *</label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-mail *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefone">Telefone/WhatsApp *</label>
+                        <input type="tel" id="telefone" name="telefone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="empresa">Empresa</label>
+                        <input type="text" id="empresa" name="empresa">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="solucao">Solução de Interesse</label>
+                        <select id="solucao" name="solucao">
+                            <option value="">Selecione uma opção</option>
+                            <option value="cftv">CFTV Inteligente</option>
+                            <option value="acesso">Controle de Acesso</option>
+                            <option value="alarme">Alarmes Monitorados</option>
+                            <option value="automacao">Automação</option>
+                            <option value="corporativo">Segurança Corporativa</option>
+                            <option value="consultoria">Consultoria</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mensagem">Mensagem</label>
+                        <textarea id="mensagem" name="mensagem" placeholder="Descreva suas necessidades de segurança..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">
+                        <i class="fas fa-paper-plane"></i> Enviar Solicitação
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>IntelliSeg</h4>
+                    <p>Soluções inteligentes em segurança eletrônica para residências e empresas.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Soluções</h4>
+                    <a href="#solucoes">CFTV Inteligente</a>
+                    <a href="#solucoes">Controle de Acesso</a>
+                    <a href="#solucoes">Alarmes Monitorados</a>
+                    <a href="#solucoes">Automação</a>
+                    <a href="#solucoes">Segurança Corporativa</a>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Empresa</h4>
+                    <a href="#sobre">Sobre Nós</a>
+                    <a href="#diferenciais">Diferenciais</a>
+                    <a href="#">Cases de Sucesso</a>
+                    <a href="#">Certificações</a>
+                    <a href="#">Trabalhe Conosco</a>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Rua da Tecnologia, 123<br>São Paulo - SP</p>
+                    <p><i class="fas fa-phone"></i> (11) 3000-0000</p>
+                    <p><i class="fab fa-whatsapp"></i> (11) 99999-9999</p>
+                    <p><i class="fas fa-envelope"></i> contato@intelliseg.com.br</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 IntelliSeg - Soluções Inteligentes. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Script básico para menu mobile (opcional)
+        document.querySelector('.mobile-menu')?.addEventListener('click', function() {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Smooth scroll para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
